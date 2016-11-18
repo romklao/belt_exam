@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dashboard</title>
+    </head>
+    <body>
+        <p>Hello, </p>
+        <form action="/logout_dashboard" method="post">
+         {% csrf_token %}
+            <input type="submit" value="logout">
+        </form>
+        <form action="/add_item" method="post">
+        {% csrf_token %}
+            <input type="submit" value="Add Item">
+        </form>
+        <p>Your Wish List!
+            <table>
+                <tr>
+                    <th>Item</th>
+                    <th>Added by</th>
+                    <th>Date Added</th>
+                    <th>Actions</th>
+                </tr>
+
+                {% for item in items %}
+                    <tr>
+                        <td><a href="/users/{{item.user.id}}">{{item.item}}</a></td>
+                        <td>{{item.user}}</td>
+                        <td>{{item.created_at}}</td>
+                        <td>
+                            <form action="/delete" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value="">
+                                <input type="submit" value="Remove from my wishlist">
+                                <input type="submit" value="delete">
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+        </p>
+        
+    </body>
+</html>

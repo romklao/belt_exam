@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add Item</title>
+    </head>
+    <body>
+        <p>Creat a New Wish List Item</p>
+        <input type="submit" value="Home">
+        <input type="submit" value="Logout">
+        </p>
+        <form action="/submit_add_item" method="post">
+        {% csrf_token %}
+            <p>Item/Product: <input type="text" name="product">
+            <input type="submit" value="add">
+        </form>
+    </body>
+</html>
